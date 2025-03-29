@@ -1,0 +1,43 @@
+# Ignore system and OS files
+.DS_Store
+Thumbs.db
+
+# Ignore Node.js dependencies (if used in the future)
+node_modules/
+
+# Ignore build and cache files
+dist/
+build/
+.cache/
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Ignore environment files (if storing API keys or credentials)
+.env
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore research paper backup files (if using LaTeX or Word)
+*.aux
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+~$*.docx
+
+# Ignore unnecessary asset cache
+assets/cache/
+
+# Ignore minified and compiled CSS/JS (if generated automatically)
+*.min.css
+*.min.js
+
+# Ignore Netlify and deployment-specific files
+netlify.toml
+.vercel/
