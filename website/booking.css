@@ -1,0 +1,502 @@
+/* ======================================== */
+/* ===          Booking Section         === */
+/* ======================================== */
+
+#booking {
+    /* Layout & Box Model */
+    max-width: 80rem; /* Container width */
+    margin: 5rem auto; /* Centering and vertical spacing */
+    padding: 3rem; /* Inner spacing */
+    border-radius: 1.5rem; /* Softer corners */
+
+    /* Appearance */
+    background: var(--card-light);
+    box-shadow: var(--shadow), 0 6px 16px rgba(0, 0, 0, 0.1); /* Base shadow */
+
+    /* Interaction & Performance */
+    transition: transform var(--transition-duration, 0.3s) ease,
+                box-shadow var(--transition-duration, 0.3s) ease; /* Smoother transition definition */
+    will-change: transform, box-shadow; /* Performance hint for animations */
+
+    /* Initial Animation */
+    opacity: 0; /* Start hidden for fade-in */
+    animation: fadeIn var(--animation-duration, 0.5s) ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+#booking:hover {
+    transform: translateY(-0.4rem); /* Subtle lift on hover */
+    box-shadow: var(--shadow), 0 12px 20px rgba(0, 0, 0, 0.18); /* Enhanced shadow on hover */
+}
+
+/* --- Dark Mode: Booking Container --- */
+body.dark-mode #booking {
+    background: var(--card-dark);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Dark mode specific shadow */
+}
+
+/* ======================================== */
+/* ===        Booking Header (h2)       === */
+/* ======================================== */
+
+#booking h2 {
+    /* Layout & Box Model */
+    margin-bottom: 2.5rem; /* Increased spacing below header */
+    text-align: center;
+
+    /* Typography */
+    font-family: 'Orbitron', sans-serif; /* Sci-fi/tech feel */
+    font-size: clamp(1.8rem, 4.5vw, 3rem); /* Responsive font size */
+    font-weight: 800;
+    color: var(--primary-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    line-height: 1.3; /* Added for better control */
+
+    /* Appearance */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Subtle depth */
+}
+
+/* --- Dark Mode: Booking Header --- */
+body.dark-mode #booking h2 {
+    color: var(--primary-magenta);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Stronger shadow for dark bg */
+}
+
+/* ======================================== */
+/* ===      Progress Indicator          === */
+/* ======================================== */
+
+#booking .progress {
+    /* Layout */
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Space between steps */
+    margin-bottom: 2.5rem; /* Space below indicator */
+}
+
+#booking .progress div {
+    /* Box Model */
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%; /* Circular steps */
+
+    /* Typography */
+    text-align: center;
+    line-height: 2.8rem; /* Vertically center text */
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-light); /* Default text color for steps */
+
+    /* Appearance */
+    background: #d1d3d0; /* Default background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle depth */
+
+    /* Interaction */
+    transition: background-color var(--transition-duration, 0.3s) ease,
+                color var(--transition-duration, 0.3s) ease,
+                transform var(--transition-duration, 0.3s) ease,
+                box-shadow var(--transition-duration, 0.3s) ease; /* Smooth transitions */
+}
+
+/* --- Active Progress Step --- */
+#booking .progress div.active {
+    background: linear-gradient(135deg, var(--primary-magenta), var(--secondary-magenta));
+    color: #fff; /* White text on active gradient */
+    transform: scale(1.15); /* Slightly larger active step */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* More prominent shadow */
+}
+
+/* --- Dark Mode: Progress Indicator --- */
+/* (No specific dark mode changes needed here unless step colors should adapt) */
+/* body.dark-mode #booking .progress div { ... } */
+
+
+/* ======================================== */
+/* ===          Booking Form            === */
+/* ======================================== */
+
+#booking-form {
+    max-width: 48rem; /* Limit form width for readability */
+    margin: 1.5rem auto 0; /* Centering and top margin */
+}
+
+/* --- Form Steps --- */
+#booking .form-step {
+    display: none; /* Hide inactive steps */
+}
+
+#booking .form-step.active {
+    display: block;
+    /* Animation applied when step becomes active */
+    animation: fadeIn var(--animation-duration, 0.5s) ease-out;
+}
+
+/* ======================================== */
+/* ===   Form Inputs, Selects, Textarea === */
+/* ======================================== */
+
+#booking input,
+#booking select,
+#booking textarea {
+    /* Box Model */
+    width: 100%;
+    padding: 0.9rem 1rem; /* Adjusted padding */
+    margin-bottom: 1.25rem;
+    border: 2px solid var(--primary-cyan);
+    border-radius: 0.8rem;
+
+    /* Typography */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-light);
+
+    /* Appearance */
+    background: rgba(255, 255, 255, 0.98); /* Slightly transparent white */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    /* Interaction */
+    transition: border-color 0.3s ease, background-color 0.3s ease,
+                box-shadow 0.3s ease, transform 0.2s ease; /* Added transform transition */
+}
+
+/* --- Placeholder & Invalid Select Styling --- */
+#booking input::placeholder,
+#booking select:invalid, /* Style dropdown when no valid option is selected */
+#booking textarea::placeholder {
+    color: #6b7280; /* Muted placeholder text */
+    opacity: 0.7;
+}
+
+/* --- Removing Default Number Input Spinners --- */
+#booking input[type="number"] {
+    -webkit-appearance: none; /* Chrome, Safari, Edge */
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield;
+}
+
+/* --- Dark Mode: Inputs --- */
+body.dark-mode #booking input,
+body.dark-mode #booking select,
+body.dark-mode #booking textarea {
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.98), rgba(33, 44, 55, 0.98)); /* Dark gradient */
+    color: var(--text-dark);
+    border-color: var(--primary-magenta);
+}
+
+body.dark-mode #booking input::placeholder,
+body.dark-mode #booking select:invalid,
+body.dark-mode #booking textarea::placeholder {
+    color: #a0aec0; /* Lighter placeholder for dark bg */
+}
+
+/* --- Focus States (Using :focus-visible for accessibility) --- */
+#booking input:focus-visible,
+#booking select:focus-visible,
+#booking textarea:focus-visible {
+    outline: none; /* Remove default browser outline */
+    border-width: 3px; /* Make border thicker on focus */
+    border-color: var(--primary-magenta);
+    background: rgba(255, 255, 255, 1); /* Solid white bg on focus */
+    transform: scale(1.01); /* Subtle scale on focus */
+    box-shadow: 0 0 12px rgba(255, 0, 122, 0.5), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Apply glow animation */
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+/* --- Dark Mode: Focus States --- */
+body.dark-mode #booking input:focus-visible,
+body.dark-mode #booking select:focus-visible,
+body.dark-mode #booking textarea:focus-visible {
+    border-color: var(--primary-cyan); /* Use cyan for focus border in dark mode */
+    background: rgba(44, 62, 80, 1); /* Solid dark bg on focus */
+    box-shadow: 0 0 12px rgba(0, 221, 235, 0.5), inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    /* Use dark mode glow animation */
+    animation-name: glow-dark;
+}
+
+/* --- Glow Keyframes --- */
+@keyframes glow {
+    from { box-shadow: 0 0 8px rgba(255, 0, 122, 0.4), inset 0 1px 3px rgba(0, 0, 0, 0.1); }
+    to { box-shadow: 0 0 16px rgba(255, 0, 122, 0.6), inset 0 1px 3px rgba(0, 0, 0, 0.1); }
+}
+
+@keyframes glow-dark {
+    from { box-shadow: 0 0 8px rgba(0, 221, 235, 0.4), inset 0 1px 3px rgba(0, 0, 0, 0.2); }
+    to { box-shadow: 0 0 16px rgba(0, 221, 235, 0.6), inset 0 1px 3px rgba(0, 0, 0, 0.2); }
+}
+
+
+/* ======================================== */
+/* ===         Form Buttons             === */
+/* ======================================== */
+
+#booking button {
+    /* Layout & Box Model */
+    display: inline-block; /* Allow margin/padding */
+    border: none;
+    padding: 0.9rem 2.25rem;
+    border-radius: 2.5rem; /* Pill shape */
+    cursor: pointer;
+    position: relative; /* Needed for pseudo-element */
+    overflow: hidden; /* Contain the shimmer effect */
+
+    /* Typography */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+
+    /* Appearance */
+    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-magenta));
+
+    /* Interaction & Performance */
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, background-color, box-shadow;
+
+    /* Initial Animation */
+    /* animation: zoomIn var(--animation-duration, 0.5s) ease-out 0.6s backwards; */
+    /* Consider if zoomIn is defined elsewhere or if a simpler fadeIn is better */
+}
+
+/* --- Button Shimmer Effect --- */
+#booking button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transition: left 0.5s ease; /* Slightly slower shimmer */
+    pointer-events: none; /* Prevent pseudo-element blocking clicks */
+}
+
+#booking button:hover::before {
+    left: 100%;
+}
+
+/* --- Button Hover State --- */
+#booking button:hover {
+    transform: scale(1.06);
+    background: linear-gradient(135deg, var(--secondary-cyan), var(--secondary-magenta));
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Button Focus State --- */
+#booking button:focus-visible {
+    outline: 3px solid var(--primary-magenta); /* Clear focus indicator */
+    outline-offset: 3px; /* Space between button and outline */
+    /* Optionally add a subtle inner shadow or keep hover styles */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Dark Mode: Button Focus --- */
+body.dark-mode #booking button:focus-visible {
+     outline-color: var(--primary-cyan); /* Use cyan outline in dark mode */
+}
+
+
+/* ======================================== */
+/* ===        Success Message           === */
+/* ======================================== */
+
+#success-message {
+    /* Layout & Box Model */
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 0.75rem; /* Add some padding */
+
+    /* Typography */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-cyan);
+
+    /* Animation & Initial State */
+    opacity: 0;
+    transform: translateY(15px);
+    /* Animation will be applied via JS or directly if always visible initially */
+    /* animation: fadeInOut 4.5s ease-in-out forwards; */
+}
+
+/* --- Dark Mode: Success Message --- */
+body.dark-mode #success-message {
+    color: var(--primary-magenta);
+}
+
+/* --- Success Message Animation --- */
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+    }
+    10%, 90% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ======================================== */
+/* ===  Reduced Motion Preferences      === */
+/* ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    #booking,
+    #booking:hover,
+    #booking .progress div,
+    #booking .progress div.active,
+    #booking input,
+    #booking select,
+    #booking textarea,
+    #booking button,
+    #booking button:hover,
+    #booking .form-step.active,
+    #success-message,
+    #booking input:focus-visible,
+    #booking select:focus-visible,
+    #booking textarea:focus-visible {
+        transition: none;
+        animation: none;
+    }
+
+    /* Provide static hover/focus styles if needed */
+    #booking:hover {
+        transform: none;
+        /* Keep hover shadow if desired */
+        /* box-shadow: var(--shadow), 0 12px 20px rgba(0, 0, 0, 0.18); */
+    }
+    #booking button:hover {
+        transform: none;
+        /* Keep hover background/shadow if desired */
+        /* background: linear-gradient(135deg, var(--secondary-cyan), var(--secondary-magenta)); */
+        /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); */
+    }
+    #booking button::before {
+        display: none; /* Hide shimmer */
+    }
+    #booking input:focus-visible,
+    #booking select:focus-visible,
+    #booking textarea:focus-visible {
+       transform: none; /* Remove scaling */
+    }
+}
+
+/* ======================================== */
+/* ===       Responsive Design          === */
+/* ======================================== */
+
+/* --- Tablet & Smaller Laptops --- */
+@media (max-width: 1024px) {
+    #booking {
+        padding: 2.5rem;
+        margin: 3.5rem auto;
+    }
+    #booking h2 {
+        font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+    }
+    #booking .progress {
+        gap: 1.25rem;
+    }
+    #booking .progress div {
+        width: 2.4rem;
+        height: 2.4rem;
+        line-height: 2.4rem;
+        font-size: 1rem;
+    }
+}
+
+/* --- Smaller Tablets & Large Phones --- */
+@media (max-width: 768px) {
+    #booking {
+        padding: 2rem 1.5rem; /* Adjust horizontal padding */
+        margin: 2.5rem auto;
+    }
+    #booking h2 {
+        font-size: clamp(1.6rem, 5vw, 2.4rem);
+        letter-spacing: 0.08rem;
+        margin-bottom: 2rem; /* Adjust spacing */
+    }
+    #booking .progress {
+        gap: 1rem;
+        margin-bottom: 2rem; /* Adjust spacing */
+    }
+    #booking .progress div {
+        width: 2.2rem;
+        height: 2.2rem;
+        line-height: 2.2rem;
+        font-size: 0.9rem;
+    }
+    #booking input,
+    #booking select,
+    #booking textarea {
+        font-size: 1rem;
+        padding: 0.8rem 0.9rem; /* Adjust padding */
+    }
+    #booking button {
+        width: 100%; /* Make buttons full width */
+        padding: 0.9rem 1.5rem; /* Adjust padding for full width */
+        font-size: 1.1rem;
+    }
+    #success-message {
+        font-size: 1.1rem;
+        margin: 1.25rem 0;
+    }
+}
+
+/* --- Smaller Phones --- */
+@media (max-width: 480px) {
+    #booking {
+        padding: 1.5rem 1rem; /* Further reduce padding */
+        margin: 2rem auto;
+        border-radius: 1rem; /* Slightly smaller radius */
+    }
+    #booking h2 {
+        font-size: clamp(1.5rem, 5.5vw, 2rem); /* Adjust clamp for smaller screens */
+    }
+    #booking .progress {
+        gap: 0.75rem;
+    }
+    #booking .progress div {
+        width: 2rem;
+        height: 2rem;
+        line-height: 2rem;
+        font-size: 0.85rem;
+    }
+    #booking-form {
+        max-width: 100%; /* Allow form to use full width */
+    }
+    #booking input,
+    #booking select,
+    #booking textarea {
+        font-size: 0.95rem;
+        padding: 0.75rem 0.8rem; /* Adjust padding */
+        border-radius: 0.6rem; /* Slightly smaller radius */
+    }
+    #booking button {
+        font-size: 1rem;
+        padding: 0.8rem 1rem; /* Adjust padding */
+        border-radius: 2rem; /* Adjust radius */
+    }
+    #success-message {
+        font-size: 1rem;
+    }
+}
+
+/* ======================================== */
+/* ===       Utility Keyframes          === */
+/* ======================================== */
+
+/* Basic Fade In */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* (Keep zoomIn if used and defined elsewhere) */
+/* @keyframes zoomIn { ... } */

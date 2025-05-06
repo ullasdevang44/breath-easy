@@ -1,0 +1,297 @@
+/* ======================================== */
+/* ===         Header Section           === */
+/* ======================================== */
+
+header {
+    /* Layout & Box Model */
+    position: relative; /* Establishes positioning context for children */
+    height: 100vh; /* Full viewport height */
+    min-height: 450px; /* Minimum height for very short screens */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    padding: 2rem; /* Add padding for smaller screens */
+    box-sizing: border-box; /* Include padding in height calculation */
+
+    /* Appearance */
+    color: #fff; /* Default text color for header */
+    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-magenta)); /* Fallback background */
+    text-align: center;
+    overflow: hidden; /* Contain particles and prevent overflow */
+}
+
+/* --- Particles Background --- */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Position behind content */
+}
+
+/* --- Header Content Wrapper (Optional but recommended) --- */
+/* You might want to wrap h1 and p in a div for easier control */
+.header-content {
+    position: relative; /* Ensure it's above particles */
+    z-index: 1;
+    max-width: 90%; /* Prevent text stretching too wide */
+}
+
+/* --- Main Heading (h1) --- */
+header h1 {
+    /* Typography */
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem); /* Adjusted clamp for better range */
+    font-weight: 800;
+    line-height: 1.2; /* Improved line spacing */
+    text-transform: uppercase; /* Consistency with other titles? Optional */
+    letter-spacing: 0.05em; /* Optional spacing */
+
+    /* Appearance */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35); /* Slightly enhanced shadow */
+
+    /* Layout */
+    margin-block-end: 0.75rem; /* Space below heading */
+}
+
+/* --- Subtitle Paragraph (p) --- */
+header p {
+    /* Typography */
+    font-size: clamp(1.1rem, 3vw, 1.6rem); /* Adjusted clamp */
+    line-height: 1.6; /* Improved readability */
+    font-weight: 400; /* Standard weight */
+
+    /* Layout */
+    max-width: 650px; /* Slightly wider allowed width */
+    margin-inline: auto; /* Ensure centering */
+    margin-block-start: 0.75rem; /* Consistent spacing */
+}
+
+/* ======================================== */
+/* ===     Home Content Section         === */
+/* ======================================== */
+
+#home {
+    /* Layout & Box Model */
+    max-width: 1200px;
+    margin-block: 4rem; /* Vertical spacing */
+    margin-inline: auto; /* Horizontal centering */
+    padding-block: 2rem; /* Vertical padding */
+    padding-inline: clamp(1rem, 5vw, 3rem); /* Responsive horizontal padding */
+    text-align: center;
+
+    /* Accessibility */
+    scroll-margin-top: 5rem; /* Adjust based on fixed header height, if any */
+
+    /* Initial Animation (Optional, if desired) */
+    /* opacity: 0; */
+    /* animation: fadeIn 0.6s ease-out 0.2s forwards; */
+}
+
+/* --- Section Heading (h2) --- */
+#home h2 {
+    /* Typography */
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem); /* Adjusted clamp */
+    font-weight: 700; /* Slightly less bold than h1 */
+    color: var(--primary-cyan);
+    line-height: 1.3;
+    text-transform: uppercase; /* Consistency */
+    letter-spacing: 0.1em; /* Consistency */
+
+    /* Layout */
+    margin-block-end: 1.5rem; /* Space below */
+}
+
+/* --- Dark Mode: Home Heading --- */
+body.dark-mode #home h2 {
+    color: var(--primary-magenta);
+}
+
+/* --- Highlight Text Paragraph --- */
+#home .highlight-text {
+    /* Typography */
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.7; /* Improve readability */
+    color: var(--text-light);
+
+    /* Layout */
+    max-width: 750px; /* Limit width for readability */
+    margin-inline: auto; /* Center the text block */
+    margin-block-end: 2.5rem; /* More space before button */
+}
+
+/* --- Dark Mode: Highlight Text --- */
+body.dark-mode #home .highlight-text {
+    color: var(--text-dark);
+}
+
+/* --- Call to Action Button --- */
+#home button {
+    /* Layout & Box Model */
+    display: inline-block; /* Allow padding/margin */
+    border: none;
+    padding: 0.9rem 2.25rem; /* Consistent padding with other buttons */
+    border-radius: 2.5rem; /* Consistent border-radius */
+    cursor: pointer;
+    position: relative; /* For pseudo-element */
+    overflow: hidden; /* Contain shimmer */
+
+    /* Typography */
+    font-family: 'Poppins', sans-serif; /* Match other buttons? */
+    font-size: 1.15rem; /* Consistent font size */
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none; /* If used as a link styled as button */
+
+    /* Appearance */
+    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-magenta));
+    box-shadow: var(--shadow-small, 0 2px 4px rgba(0,0,0,0.1)); /* Subtle base shadow */
+
+    /* Interaction & Performance */
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, background-color, box-shadow;
+}
+
+/* --- Button Shimmer Effect --- */
+#home button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35), /* Slightly less intense shimmer? */
+        transparent
+    );
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+#home button:hover::before {
+    left: 100%;
+}
+
+/* --- Button Hover State --- */
+#home button:hover {
+    transform: scale(1.06) translateY(-2px); /* Add subtle lift */
+    background: linear-gradient(135deg, var(--secondary-cyan), var(--secondary-magenta));
+    box-shadow: var(--shadow, 0 6px 12px rgba(0,0,0,0.2)); /* Enhance shadow */
+}
+
+/* --- Button Focus State (Accessibility) --- */
+#home button:focus-visible {
+    outline: 3px solid var(--primary-magenta);
+    outline-offset: 3px;
+    box-shadow: var(--shadow, 0 4px 10px rgba(0,0,0,0.15)); /* Focus shadow */
+}
+
+/* --- Dark Mode: Button Focus --- */
+body.dark-mode #home button:focus-visible {
+     outline-color: var(--primary-cyan);
+}
+
+/* ======================================== */
+/* ===  Reduced Motion Preferences      === */
+/* ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    header, /* Prevent potential future animations on header */
+    #home button,
+    #home button:hover {
+        transition: none;
+        animation: none;
+    }
+
+    #home button:hover {
+        transform: none; /* Disable hover transform */
+    }
+
+    #home button::before {
+        display: none; /* Disable shimmer */
+    }
+}
+
+/* ======================================== */
+/* ===       Responsive Design          === */
+/* ======================================== */
+
+/* --- Smaller Laptops / Tablets --- */
+@media (max-width: 1024px) {
+    /* Header adjustments if needed */
+}
+
+/* --- Tablets & Large Phones --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: clamp(2.5rem, 7vw, 4rem); /* Adjust clamp for tablet */
+    }
+    header p {
+        font-size: clamp(1rem, 3vw, 1.4rem); /* Adjust clamp for tablet */
+    }
+
+    #home {
+        margin-block: 3rem; /* Reduce vertical margins */
+        padding-inline: 1.5rem; /* Adjust padding */
+    }
+
+    #home h2 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem); /* Adjust clamp */
+    }
+
+    #home .highlight-text {
+         margin-block-end: 2rem; /* Adjust spacing */
+    }
+
+    #home button {
+        padding: 0.8rem 1.8rem; /* Adjust padding */
+        font-size: 1.05rem; /* Adjust font size */
+    }
+}
+
+/* --- Smaller Phones --- */
+@media (max-width: 480px) {
+    header {
+        padding: 1rem; /* Reduce header padding */
+        min-height: 400px; /* Adjust min-height */
+    }
+    header h1 {
+        font-size: clamp(2.2rem, 8vw, 3rem); /* Further adjust clamp */
+        letter-spacing: 0.02em;
+    }
+    header p {
+        font-size: clamp(0.95rem, 4vw, 1.2rem); /* Further adjust clamp */
+    }
+
+     #home {
+        margin-block: 2.5rem;
+        padding-inline: 1rem;
+    }
+    #home h2 {
+        font-size: clamp(1.6rem, 6vw, 2.2rem);
+    }
+    #home .highlight-text {
+         font-size: clamp(1rem, 3vw, 1.2rem);
+         margin-block-end: 1.5rem;
+    }
+    #home button {
+        width: 100%; /* Make button full width */
+        padding: 0.9rem 1.5rem; /* Adjust padding */
+        font-size: 1rem;
+    }
+}
+
+/* ======================================== */
+/* ===       Utility Keyframes          === */
+/* ======================================== */
+
+/* Define fadeIn if not globally available */
+/* @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+} */

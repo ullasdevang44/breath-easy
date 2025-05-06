@@ -1,0 +1,310 @@
+/* ======================================== */
+/* ===         Monitor Section          === */
+/* ======================================== */
+
+#monitor {
+    /* Layout & Box Model */
+    max-width: 1200px;
+    margin-block: 4rem; /* Vertical spacing */
+    margin-inline: auto; /* Horizontal centering */
+    padding-block: 2rem; /* Vertical padding */
+    padding-inline: clamp(1rem, 5vw, 3rem); /* Responsive horizontal padding */
+    text-align: center;
+
+    /* Accessibility */
+    scroll-margin-top: 5rem; /* Adjust based on fixed header height, if any */
+
+    /* Initial Animation (Optional) */
+    /* opacity: 0; */
+    /* animation: fadeIn var(--animation-duration, 0.5s) ease-out 0.4s forwards; */
+}
+
+/* --- Section Heading (h2) --- */
+#monitor h2 {
+    /* Typography */
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem); /* Consistent heading size */
+    font-weight: 700;
+    color: var(--primary-cyan);
+    line-height: 1.3;
+    text-transform: uppercase; /* Consistency */
+    letter-spacing: 0.1em; /* Consistency */
+
+    /* Layout */
+    margin-block-end: 2.5rem; /* Consistent spacing */
+}
+
+/* --- Dark Mode: Monitor Heading --- */
+body.dark-mode #monitor h2 {
+    color: var(--primary-magenta);
+}
+
+/* ======================================== */
+/* ===        Monitor Data Grid         === */
+/* ======================================== */
+
+#monitor .grid {
+    display: grid;
+    /* Responsive columns: fit content, min 250px, max 1fr */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 2rem; /* Space between grid items */
+    margin-block-end: 3rem; /* Space below grid before button */
+    text-align: left; /* Align text inside cards to the left */
+}
+
+/* ======================================== */
+/* ===      Monitor Data Cards          === */
+/* ======================================== */
+
+#monitor .card {
+    /* Layout & Box Model */
+    padding: clamp(1.5rem, 5vw, 2rem); /* Responsive padding */
+
+    /* Appearance */
+    background: var(--card-light);
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+
+    /* Interaction & Performance */
+    transition: transform var(--transition-duration, 0.3s) ease,
+                box-shadow var(--transition-duration, 0.3s) ease;
+    will-change: transform, box-shadow;
+
+    /* Initial Animation (Stagger if possible with JS) */
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+    /* animation-delay: calc(0.5s + var(--card-index, 0) * 0.1s); */ /* Example JS stagger */
+}
+
+/* --- Dark Mode: Card --- */
+body.dark-mode #monitor .card {
+    background: var(--card-dark);
+}
+
+/* --- Card Hover State --- */
+#monitor .card:hover {
+    transform: translateY(-0.4rem); /* Consistent subtle lift */
+    box-shadow: var(--shadow-hover, 0 8px 16px rgba(0, 0, 0, 0.15)); /* Consistent hover shadow */
+}
+
+/* --- Dark Mode: Card Hover State --- */
+body.dark-mode #monitor .card:hover {
+     box-shadow: var(--shadow-hover-dark, 0 8px 16px rgba(0, 0, 0, 0.3));
+}
+
+/* --- Card Heading (h3) --- */
+#monitor .card h3 {
+    /* Typography */
+    font-family: 'Poppins', sans-serif; /* Or Orbitron if preferred for titles */
+    font-size: clamp(1.1rem, 3vw, 1.3rem); /* Slightly smaller for sub-heading */
+    color: var(--primary-cyan);
+    font-weight: 600;
+    line-height: 1.4;
+    text-transform: uppercase; /* Make titles uppercase? */
+    letter-spacing: 0.05em;
+
+    /* Layout */
+    margin-block-end: 0.75rem; /* Space below heading */
+}
+
+/* --- Dark Mode: Card Heading --- */
+body.dark-mode #monitor .card h3 {
+    color: var(--primary-magenta);
+}
+
+/* --- Card Value/Data Paragraph (p) --- */
+/* Styling assuming this 'p' shows a large key metric/number */
+#monitor .card p.metric-value { /* Add class="metric-value" to the specific <p> */
+    /* Typography */
+    font-family: 'Orbitron', sans-serif; /* Use Orbitron for numbers? */
+    font-size: clamp(1.8rem, 6vw, 2.5rem); /* Large, responsive font size */
+    font-weight: 700; /* Bold number */
+    color: var(--text-emphasis-light, var(--primary-cyan)); /* Use emphasis color or primary */
+    line-height: 1.2; /* Adjust line height for large font */
+    text-align: center; /* Center the large number? */
+
+    /* Layout */
+    margin-block-start: 0.5rem; /* Space above the metric */
+    margin-block-end: 0; /* No space below if it's the last element */
+}
+
+/* --- Dark Mode: Card Value/Data Paragraph --- */
+body.dark-mode #monitor .card p.metric-value {
+    color: var(--text-emphasis-dark, var(--primary-magenta));
+}
+
+/* --- Standard Card Paragraph (if any others exist) --- */
+#monitor .card p:not(.metric-value) {
+    /* Typography */
+    font-size: clamp(1rem, 2.5vw, 1.1rem); /* Standard text size */
+    color: var(--text-light);
+    line-height: 1.6;
+
+    /* Layout */
+    margin-block-end: 0.5rem;
+}
+#monitor .card p:last-child {
+    margin-block-end: 0;
+}
+
+/* --- Dark Mode: Standard Card Paragraph --- */
+body.dark-mode #monitor .card p:not(.metric-value) {
+    color: var(--text-dark);
+}
+
+
+/* ======================================== */
+/* ===   Monitor Link (Styled as Button)=== */
+/* ======================================== */
+
+.monitor-link-button {
+    /* Layout & Box Model */
+    display: inline-block; /* Allows padding, margin, etc. */
+    border: none; /* Reset browser default */
+    padding: 0.9rem 2.25rem; /* Consistent padding */
+    border-radius: 2.5rem; /* Consistent radius */
+    cursor: pointer;
+    position: relative; /* For pseudo-element */
+    overflow: hidden; /* Contain shimmer */
+
+    /* Typography */
+    font-family: 'Poppins', sans-serif; /* Consistent font */
+    font-size: 1.15rem; /* Consistent size */
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none; /* Remove underline from link */
+    text-align: center;
+
+    /* Appearance */
+    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-magenta));
+    box-shadow: var(--shadow-small, 0 2px 4px rgba(0,0,0,0.1));
+
+    /* Interaction & Performance */
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, background-color, box-shadow;
+}
+
+/* --- Link Shimmer --- */
+.monitor-link-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.monitor-link-button:hover::before {
+    left: 100%;
+}
+
+/* --- Link Hover State --- */
+.monitor-link-button:hover {
+    transform: scale(1.06) translateY(-2px); /* Consistent hover effect */
+    background: linear-gradient(135deg, var(--secondary-cyan), var(--secondary-magenta));
+    box-shadow: var(--shadow, 0 6px 12px rgba(0,0,0,0.2));
+    color: #fff; /* Ensure text remains white */
+}
+
+/* --- Link Focus State --- */
+.monitor-link-button:focus-visible {
+    outline: 3px solid var(--primary-magenta);
+    outline-offset: 3px;
+    box-shadow: var(--shadow, 0 4px 10px rgba(0,0,0,0.15));
+}
+
+/* --- Dark Mode: Link Focus --- */
+body.dark-mode .monitor-link-button:focus-visible {
+     outline-color: var(--primary-cyan);
+}
+
+/* ======================================== */
+/* ===  Reduced Motion Preferences      === */
+/* ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    #monitor .card,
+    #monitor .card:hover,
+    .monitor-link-button,
+    .monitor-link-button:hover {
+        transition: none;
+        animation: none;
+    }
+    #monitor .card:hover {
+        transform: none;
+    }
+    .monitor-link-button:hover {
+        transform: none;
+    }
+    .monitor-link-button::before {
+        display: none; /* Hide shimmer */
+    }
+}
+
+/* ======================================== */
+/* ===       Responsive Design          === */
+/* ======================================== */
+
+@media (max-width: 768px) {
+    #monitor {
+        margin-block: 3rem;
+        padding-inline: 1.5rem;
+    }
+    #monitor h2 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem); /* Adjusted clamp */
+    }
+    #monitor .grid {
+        gap: 1.5rem; /* Reduce gap */
+        margin-block-end: 2.5rem;
+    }
+    /* Card padding and h3 font-size adjusted via clamp */
+
+    #monitor .card p.metric-value {
+         font-size: clamp(1.6rem, 6vw, 2.2rem); /* Adjust metric size */
+    }
+
+    .monitor-link-button {
+        width: 100%; /* Make button full width */
+        padding: 0.9rem 1.5rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #monitor {
+        margin-block: 2.5rem;
+        padding-inline: 1rem;
+    }
+     #monitor h2 {
+        font-size: clamp(1.6rem, 6vw, 2.2rem); /* Adjusted clamp */
+    }
+    #monitor .grid {
+        gap: 1.25rem;
+        margin-block-end: 2rem;
+    }
+     #monitor .card {
+        border-radius: 0.8rem; /* Slightly smaller radius */
+    }
+     #monitor .card p.metric-value {
+         font-size: clamp(1.5rem, 7vw, 2rem); /* Further adjust metric size */
+    }
+    .monitor-link-button {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+    }
+}
+
+/* ======================================== */
+/* ===       Utility Keyframes          === */
+/* ======================================== */
+
+/* Define fadeIn if not globally available */
+/* @keyframes fadeIn { ... } */
